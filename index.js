@@ -47,5 +47,5 @@ app.get("/getdata", async (req, res) => {
 });
 
 app.listen(process.env.PORT || 5000, () => {
-  console.log("server started", process.env.PORT);
+  console.log("server started", process.env.PORT|| "5000");
 });
