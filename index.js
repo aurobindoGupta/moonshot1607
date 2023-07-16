@@ -46,6 +46,6 @@ app.get("/getdata", async (req, res) => {
   res.status(200).json(productData);
 });
 
-app.listen(5000, () => {
-  console.log("server started");
+app.listen(process.env.PORT || 5000, () => {
+  console.log("server started", process.env.PORT);
 });
