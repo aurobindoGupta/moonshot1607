@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+require("dotenv").config();
 const app = express();
 app.use(
   cors({
@@ -12,7 +12,7 @@ async function getToken() {
   const response = await fetch("https://devcore02.cimet.io/v1/generate-token", {
     method: "POST",
     headers: {
-      "API-key": "4NKQ3-815C2-8T5Q2-16318-55301",
+      "API-key": process.env.TOKEN_API_KEY,
     },
   });
   const data = await response.json();
@@ -25,12 +25,11 @@ async function getProductData(token) {
   const response = await fetch("https://devcore02.cimet.io/v1/plan-list", {
     method: "POST",
     body: JSON.stringify({
-      session_id:
-        "eyJpdiI6IkVNUkZ1N0hlSHhHSnJ3Vjl4aUlxc0E9PSIsInZhbHVlIjoieFlxa1wvVDYxQWl5U2pxMDFcL0R6ZVVvdEN6Mkk0R29TRDN3ZnN0U3VGcER0cEFMa2NVb0xNcDJudjlRTHRUbGJkIiwibWFjIjoiMTE0MmU0MGE5YmJhMzY4Nzc4MDExNmZkNTI1MjZhMGE3OTQyMDZmOTc1MTVmZDM1Mzc3ZmJmNjhmMzllOGYxYSJ9",
+      session_id: process.env.SESSION_ID,
     }),
     headers: {
       "Content-Type": "application/json",
-      "API-key": "4NKQ3-815C2-8T5Q2-16318-55301",
+      "API-key": process.env.PRODUCTDATA_API_KEY,
       "Auth-token": token,
     },
   });
